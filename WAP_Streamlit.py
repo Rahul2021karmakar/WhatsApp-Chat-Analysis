@@ -6,7 +6,7 @@ Created on Sat Jul 23 22:46:19 2022
 """
 import pandas as pd
 import streamlit as st
-from urlextract import URLExtract
+#from urlextract import URLExtract
 from matplotlib import pyplot as plt
 from wordcloud import WordCloud 
 from collections import Counter
@@ -49,11 +49,11 @@ def fetch_chat(selected_user,chat):
         msg1=chat[chat['Messages']=="<Media omitted>\n"]
         media=msg1.shape[0]
         #count number of shared link
-        link=[]
-        msg=chat['Messages'].astype(str)
-        for i in msg:
-            link.extend(extractor.find_urls(i))
-        return line,len(word),media,len(link)
+        #link=[]
+        #msg=chat['Messages'].astype(str)
+        #for i in msg:
+            #link.extend(extractor.find_urls(i))
+        return line,len(word),media#,len(link)
         
     else:
         df=chat[chat["User_Name"]==selected_user]
@@ -249,7 +249,7 @@ def hit_map(selected_user,chat):
 st.title("Top Statistics")
 
 if st.sidebar.button("Show Analysis"):
-    line,word,media,link=fetch_chat(selected_user,chat)
+    line,word,media=fetch_chat(selected_user,chat)
     col1,col2,col3,col4=st.columns(4)
     with col1:
         st.header("Total Messages")
@@ -263,9 +263,9 @@ if st.sidebar.button("Show Analysis"):
         st.header("Total Media:")
         st.title(media)
     
-    with col4:
-        st.header("Total Links")
-        st.title(link)
+   # with col4:
+       # st.header("Total Links")
+        #st.title(link)
 
         
     if selected_user == 'Overall':
