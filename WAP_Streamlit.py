@@ -181,7 +181,7 @@ def monthly_timeline(selected_user,chat):
 def set_params(chat):
             params=dict()
             params['Year']=st.sidebar.slider('Year',min_value=int(chat['Year'].min()),max_value=int(chat['Year'].max()))
-            params['Month']=st.sidebar.slider('Month',min_value=chat['Month_num'].min(),max_value=chat['Month_num'].max())
+            params['Month']=st.sidebar.slider('Month',min_value=int(chat['Month_num'].min()),max_value=int(chat['Month_num'].max()))
             return params    
 
 #@st.cache(allow_output_mutation=True)
