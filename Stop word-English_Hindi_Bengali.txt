@@ -570,7 +570,6 @@ ll
 lo
 log
 logon
-lol
 look
 looking
 looks
