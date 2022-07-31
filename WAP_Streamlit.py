@@ -113,7 +113,7 @@ def create_wordcloud(selected_user,chat):
 def most_common_words(selected_user,chat):
     temp=chat[chat['User_Name']!='Notification']
     temp=chat[chat['Messages']!='<Media omitted>\n']
-    f=open('P:\Codes\Python programme\Data Science and ML\WAP chat analysis\stop_hinglish.txt','r')
+    f=open('Stop word-English_Hindi_Bengali.txt','r')
     stop_word=f.read()
     words=[]
     if selected_user=='Overall':
