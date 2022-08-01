@@ -7,11 +7,12 @@ def Text_to_dataframe(data):
     message=re.split(pattern,data)[1:]
     dates=re.findall(pattern,data)
     df=pd.DataFrame({"Date":dates,"User_Message":message})
+   
     try:
         df["Date"]=pd.to_datetime(df["Date"],format='%d/%m/%Y, %I:%M %p -')
     except ValueError:
         df["Date"]=pd.to_datetime(df["Date"],format='%m/%d/%y, %I:%M %p -')
-    users=[]
+
     messages=[]
     for message in df['User_Message']:
       entry=re.split('([\w\W]+?):\s',message)
