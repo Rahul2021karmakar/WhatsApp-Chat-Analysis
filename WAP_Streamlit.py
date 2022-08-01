@@ -12,14 +12,16 @@ from wordcloud import WordCloud
 from collections import Counter
 import emoji
 import seaborn as sns
+import WAP
 st.sidebar.title("WhatsApp chat analysis..")
-uploaded_file = st.sidebar.file_uploader("Choose a file",type={"csv","txt"})
+uploaded_file = st.sidebar.file_uploader("Choose a file",type={"txt"})
 
-#@st.cache(allow_output_mutation=True)
 def UploadFile():
     if uploaded_file is not None:
-         data=pd.read_csv(uploaded_file)
-         return data
+        bytes_data=uploaded_file.getvalue()
+        data=bytes_data.decode("utf-8")
+        df=WAP.Text_to_dataframe(data)
+        return df
 
 chat1=UploadFile()
 chat=chat1
