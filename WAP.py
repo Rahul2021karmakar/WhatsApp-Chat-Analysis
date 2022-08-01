@@ -13,6 +13,7 @@ def Text_to_dataframe(data):
     except ValueError:
         df["Date"]=pd.to_datetime(df["Date"],format='%m/%d/%y, %I:%M %p -')
 
+    users=[]
     messages=[]
     for message in df['User_Message']:
       entry=re.split('([\w\W]+?):\s',message)
