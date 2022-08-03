@@ -5,6 +5,9 @@ from datetime import datetime as dt
 def Text_to_dataframe(data):
     pattern='\d{1,2}/\d{1,2}/\d{2,4},\s\d{1,2}:\d{1,2}\s\w\w\s-'
     message=re.split(pattern,data)[1:]
+    if len(message)==0:
+      pattern='\d{1,2}/\d{1,2}/\d{2,4},\s\d{1,2}:\d{1,2}\s-'
+      message=re.split(pattern,data)[1:]
     dates=re.findall(pattern,data)
     df=pd.DataFrame({"Date":dates,"User_Message":message})
    
