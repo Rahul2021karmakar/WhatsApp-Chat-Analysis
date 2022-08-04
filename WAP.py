@@ -17,7 +17,11 @@ def Text_to_dataframe(data):
         try:
             df["Date"]=pd.to_datetime(df["Date"],format='%m/%d/%y, %I:%M %p -')
         except ValueError:
-            df["Date"]=pd.to_datetime(df["Date"],format='%d/%m/%Y, %H:%M -')
+            try:
+                df["Date"]=pd.to_datetime(df["Date"],format='%d/%m/%Y, %H:%M -')
+            except ValueError:
+                df["Date"]=pd.to_datetime(df["Date"],format='%d/%m/%y, %I:%M %p -')
+            
 
     users=[]
     messages=[]
