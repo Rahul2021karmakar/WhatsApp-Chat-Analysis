@@ -23,7 +23,16 @@ def Text_to_dataframe(data):
                 try:
                     df["Date"]=pd.to_datetime(df["Date"],format='%d/%m/%y, %I:%M %p -')
                 except ValueError:
-                    df["Date"]=pd.to_datetime(df["Date"],format='%m/%d/%y, %H:%M -')
+                    try:
+                        df["Date"]=pd.to_datetime(df["Date"],format='%m/%d/%y, %H:%M -')
+                    except ValueError:
+                        try:
+                            df["Date"]=pd.to_datetime(df["Date"],format='%m/%d/%Y, %H:%M -')
+                        except ValueError:
+                            try:
+                                df["Date"]=pd.to_datetime(df["Date"],format='%m/%d/%Y, %I:%M %p -')
+                            except ValueError:
+                                df["Date"]=pd.to_datetime(df["Date"],format='%d/%m/%y, %H:%M -')
             
 
     users=[]
