@@ -32,7 +32,7 @@ try:
     #st.text(type(chat))
 
     user_list=chat['User_Name'].unique().tolist()
-    user_list.remove('Notification')
+    #user_list.remove('Notification')
     user_list.sort()
     user_list.insert(0,"Overall")
     selected_user=st.sidebar.selectbox("Show User analysis with respect to",user_list)
