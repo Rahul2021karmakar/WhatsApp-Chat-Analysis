@@ -183,8 +183,14 @@ try:
     #@st.cache(allow_output_mutation=True)
     def set_params(chat):
                 params=dict()
-                params['Year']=st.sidebar.slider('Year',min_value=int(chat['Year'].min()),max_value=int(chat['Year'].max()))
-                params['Month']=st.sidebar.slider('Month',min_value=int(chat['Month_num'].min()),max_value=int(chat['Month_num'].max()))
+                try:
+                    params['Year']=st.sidebar.slider('Year',min_value=int(chat['Year'].min()),max_value=int(chat['Year'].max()))
+                except Exception:
+                    st.sidebar.title("There is a single year!")
+                try:
+                    params['Month']=st.sidebar.slider('Month',min_value=int(chat['Month_num'].min()),max_value=int(chat['Month_num'].max()))
+                except Exception:
+                    st.sidebar.title("There is a single month!")
                 return params    
 
     #@st.cache(allow_output_mutation=True)
@@ -192,14 +198,8 @@ try:
                 if selected_user!='Overall':
                     st.sidebar.title("Daily Timeline")
                     params=set_params(chat)
-                    try:
-                        daily=chat[chat['Year']==params['Year']]
-                    except Exception:
-                        st.sidebar.title("Only a single year")
-                    try:
-                        daily=daily[daily['Month_num']==params['Month']]
-                    except Exception:
-                        st.sidebar.title("Only a single month")
+                    daily=chat[chat['Year']==params['Year']]
+                    daily=daily[daily['Month_num']==params['Month']]
                     daily['Only_date']=daily['Date'].dt.date
                     timeline=daily.groupby(['Only_date']).count()['Messages'].reset_index()
 
