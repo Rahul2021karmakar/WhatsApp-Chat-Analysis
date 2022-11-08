@@ -192,8 +192,14 @@ try:
                 if selected_user!='Overall':
                     st.sidebar.title("Daily Timeline")
                     params=set_params(chat)
-                    daily=chat[chat['Year']==params['Year']]
-                    daily=daily[daily['Month_num']==params['Month']]
+                    try:
+                        daily=chat[chat['Year']==params['Year']]
+                    except Exception:
+                        st.sidebar.title("Only a single year")
+                    try:
+                        daily=daily[daily['Month_num']==params['Month']]
+                    except Exception:
+                        st.sidebar.title("Only a single month")
                     daily['Only_date']=daily['Date'].dt.date
                     timeline=daily.groupby(['Only_date']).count()['Messages'].reset_index()
 
