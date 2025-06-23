@@ -70,7 +70,7 @@ class WhatsAppAnalyzer:
             words.extend(msg)
         total_words = len(words)
         
-        media_count = df[df['Messages'] == "<Media omitted>\n"].shape[0]
+        media_count = df[df['Messages'] == "<Media omitted>"].shape[0]
         
         links = []
         for msg in df['Messages'].astype(str):
@@ -92,7 +92,7 @@ class WhatsAppAnalyzer:
         """Generate word cloud for selected user"""
         temp = self.chat_df[
             (self.chat_df['User_Name'] != 'Notification') & 
-            (self.chat_df['Messages'] != '<Media omitted>\n')
+            (self.chat_df['Messages'] != '<Media omitted>')
         ]
         
         with open(STOPWORDS_PATH, 'r', encoding='utf-8') as f:
@@ -119,7 +119,7 @@ class WhatsAppAnalyzer:
         """Get most common words for selected user"""
         temp = self.chat_df[
             (self.chat_df['User_Name'] != 'Notification') & 
-            (self.chat_df['Messages'] != '<Media omitted>\n')
+            (self.chat_df['Messages'] != '<Media omitted>')
         ]
         
         with open(STOPWORDS_PATH, 'r') as f:
