@@ -12,9 +12,10 @@ from collections import Counter
 import emoji
 import seaborn as sns
 from WAP import WhatsAppParser  # Assuming this is your custom module for data processing
+from pathlib import Path
 
 # Constants
-STOPWORDS_PATH = r'P:\Codes\Python programme\Data Science and ML\WAP chat analysis\stop_hinglish.txt'
+STOPWORDS_PATH = Path('Stop word-English_Hindi_Bengali.txt')
 
 # Initialize sidebar
 st.sidebar.title("WhatsApp Chat Analysis")
@@ -94,7 +95,7 @@ class WhatsAppAnalyzer:
             (self.chat_df['Messages'] != '<Media omitted>\n')
         ]
         
-        with open(STOPWORDS_PATH, 'r') as f:
+        with open(STOPWORDS_PATH, 'r', encoding='utf-8') as f:
             stop_words = f.read()
             
         if selected_user != 'Overall':
